@@ -1,19 +1,30 @@
 import React from 'react'
-
-import { v4 as uuidv4 } from 'uuid'
 import NominationItem from './NominationItem'
 
 const NomiationList = ({ nominations, removeNominations }) => {
   return (
-    <div>
-      {console.log(nominations)}
-      {nominations.map((nomination, index) => (
-        <div key={uuidv4()} className='w-full md:w-40 lg:w-1/4 transition ease-in duration-600'>
-          <NominationItem index={index} removeNominations={removeNominations} title={nomination.movie.Title} poster={nomination.movie.Poster} />
-        </div>
-      ))}
+    <div className='my-6 mx-2 md:m-6 bg-white overflow-hidden shadow rounded-lg'>
+      <div className='flex p-0.5 w-full h-16'>
+        <h1>Nomination List</h1>
+      </div>
+      <div className='bg-indigo-50 px-4 py-5 sm:p-6'>
+        {nominations.map((nomination, index) => (
+          <div key={index} className='w-full md:w-40 lg:w-1/4 transition ease-in duration-600'>
+            <NominationItem  removeNominations={removeNominations} nomination={nomination.movie} index={index}/>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
 
 export default NomiationList
+
+// <div>
+
+// {nominations.map((nomination, index) => (
+//   <div key={index} className='w-full md:w-40 lg:w-1/4 transition ease-in duration-600'>
+//     <NominationItem index={index} removeNominations={removeNominations} title={nomination.movie.Title} poster={nomination.movie.Poster} />
+//   </div>
+// ))}
+// </div>

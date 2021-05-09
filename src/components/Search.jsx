@@ -43,16 +43,16 @@ export default function Search({ addNominationList, nominations }) {
   // Pretty standard UI with search input and results
   return (
     <div>
-      <div className='bg-white overflow-hidden shadow rounded-lg'>
-        <div className='px-4 py-5 sm:px-6'>
-          <input className='w-full h-full border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent' placeholder='Search Movies' onChange={(e) => setSearchTerm(e.target.value)} />
+      <div className='my-6 mx-2 md:m-6 bg-white overflow-hidden shadow rounded-lg'>
+        <div className='p-0.5 w-full h-16'>
+          <input className='w-full h-full shadow rounded-lg border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent' placeholder='Search Movies' onChange={(e) => setSearchTerm(e.target.value)} />
         </div>
         <div className='bg-gray-50 px-4 py-5 sm:p-6'>
           {isSearching && <div>Searching ...</div>}
 
           {results.Search &&
             results.Search.map((result) => (
-              <div key={result.imdbID + uuidv4()} className='w-full md:w-40 lg:w-1/4'>
+              <div key={result.imdbID + uuidv4()} className='w-full '>
                 <SearchItem id={result.imdbID} title={result.Title} poster={result.Poster} addNominationList={addNominationList} result={result} nominations={nominations} />
               </div>
             ))}

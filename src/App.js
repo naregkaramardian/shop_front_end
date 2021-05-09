@@ -18,7 +18,7 @@ function App() {
   }
 
   return (
-    <div className='App flex'>
+    <div className='App flex flex-col md:flex-row '>
       <div class='flex-1'>
         <Search addNominationList={addNominationList} nominations={nominations} />
       </div>

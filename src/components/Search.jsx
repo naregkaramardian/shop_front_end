@@ -13,10 +13,11 @@ export default function Search({ addNominationList, nominations }) {
   const [isSearching, setIsSearching] = useState(false)
 
   const debouncedSearchTerm = useDebounce(searchTerm, 500)
+  const debouncedYear = useDebounce(year, 500)
 
   useEffect(() => {
     // Make sure we have a value (user has entered something in input)
-    if (debouncedSearchTerm) {
+    if (debouncedSearchTerm || debouncedYear) {
       // Set isSearching state
       setIsSearching(true)
       // Fire off our API call
@@ -29,7 +30,7 @@ export default function Search({ addNominationList, nominations }) {
     } else {
       setResults([])
     }
-  }, [debouncedSearchTerm])
+  }, [debouncedSearchTerm , debouncedYear])
 
   // API search function
   const searchCharacters = async (search) => {

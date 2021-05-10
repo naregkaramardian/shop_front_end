@@ -4,6 +4,7 @@ import Search from './components/Search'
 import useStorage from './Hooks/useStorage'
 import Banner from './components/Banners'
 import Notify from './components/Notify'
+import Layout from './components/Layout'
 
 function App() {
   const [nominations, setNominations] = useStorage('nominations')
@@ -27,17 +28,22 @@ function App() {
     <div>
       {nominations.length >= 5 && <Banner />}
 
-      <div className='App flex flex-col md:flex-row '>
-        <div class='flex-1'>
-          <Search addNominationList={addNominationList} nominations={nominations} setNotify={setNotify} />
-        </div>
-        <div class='flex-1'>
-          <NomiationList nominations={nominations} removeNominations={removeNominations} />
-        </div>
-      </div>
-      {notify ? <Notify setNotify={setNotify} notifyMovie={notifyMovie}/> : null}
+      <Layout addNominationList={addNominationList} nominations={nominations} setNotify={setNotify} removeNominations={removeNominations} />
+
+      {notify ? <Notify setNotify={setNotify} notifyMovie={notifyMovie} /> : null}
     </div>
   )
 }
 
 export default App
+
+{
+  /* <div className='App flex flex-col md:flex-row '>
+<div class='flex-1'>
+  <Search addNominationList={addNominationList} nominations={nominations} setNotify={setNotify} />
+</div>
+<div class='flex-1'>
+  <NomiationList nominations={nominations} removeNominations={removeNominations} />
+</div>
+</div> */
+}

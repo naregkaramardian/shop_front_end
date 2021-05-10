@@ -4,9 +4,6 @@ import NominationItem from './NominationItem'
 const NomiationList = ({ nominations, removeNominations }) => {
   return (
     <div className='my-6 mx-2 md:m-6 bg-white overflow-hidden shadow rounded-lg'>
-      <div className='flex p-0.5 w-full h-16'>
-        <h1>Nomination List</h1>
-      </div>
       <div className='bg-indigo-50 px-4 py-5 sm:p-6'>
         {nominations.map((nomination, index) => (
           <div key={index} className='w-full md:w-40 lg:w-1/4 transition ease-in duration-600'>

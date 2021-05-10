@@ -8,9 +8,11 @@ import Notify from './components/Notify'
 function App() {
   const [nominations, setNominations] = useStorage('nominations')
   const [notify, setNotify] = useState(false)
+  const [notifyMovie, setNotifyMovie] = useState()
 
   const addNominationList = (movie) => {
     const newNominations = [...nominations, { movie }]
+    setNotifyMovie(movie)
     setNominations(newNominations)
     // return <Notify />
   }
@@ -33,7 +35,7 @@ function App() {
           <NomiationList nominations={nominations} removeNominations={removeNominations} />
         </div>
       </div>
-      {notify ? <Notify /> : null}
+      {notify ? <Notify setNotify={setNotify} notifyMovie={notifyMovie}/> : null}
     </div>
   )
 }

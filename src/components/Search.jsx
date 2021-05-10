@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import useDebounce from '../Hooks/UseDebounce'
 import { v4 as uuidv4 } from 'uuid'
 import SearchItem from './search_item'
 
-export default function Search({ addNominationList, nominations , setNotify}) {
+export default function Search({ addNominationList, nominations, setNotify }) {
   // State and setter for search term
   const [searchTerm, setSearchTerm] = useState('')
   const [year, setYear] = useState('')
@@ -14,6 +14,19 @@ export default function Search({ addNominationList, nominations , setNotify}) {
 
   const debouncedSearchTerm = useDebounce(searchTerm, 500)
   const debouncedYear = useDebounce(year, 500)
+
+  // API search function
+  const searchCharacters = useCallback(
+    async (search) => {
+      const apiKey = 'aa21a4b1'
+      const queryString = `apikey=${apiKey}&s=${search}&y=${year}`
+      const url = `https://www.omdbapi.com/?${queryString}`
+      const response = await fetch(url)
+      const data = await response.json()
+      return data
+    },
+    [year]
+  )
 
   useEffect(() => {
     // Make sure we have a value (user has entered something in input)
@@ -30,17 +43,7 @@ export default function Search({ addNominationList, nominations , setNotify}) {
     } else {
       setResults([])
     }
-  }, [debouncedSearchTerm , debouncedYear])
-
-  // API search function
-  const searchCharacters = async (search) => {
-    const apiKey = 'aa21a4b1'
-    const queryString = `apikey=${apiKey}&s=${search}&y=${year}`
-    const url = `https://www.omdbapi.com/?${queryString}`
-    const response = await fetch(url)
-    const data = await response.json()
-    return data
-  }
+  }, [debouncedSearchTerm, debouncedYear, searchCharacters])
 
   // Pretty standard UI with search input and results
   return (

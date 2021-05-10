@@ -16,12 +16,3 @@ const NomiationList = ({ nominations, removeNominations }) => {
 }
 
 export default NomiationList
-
-// <div>
-
-// {nominations.map((nomination, index) => (
-//   <div key={index} className='w-full md:w-40 lg:w-1/4 transition ease-in duration-600'>
-//     <NominationItem index={index} removeNominations={removeNominations} title={nomination.movie.Title} poster={nomination.movie.Poster} />
-//   </div>
-// ))}
-// </div>
